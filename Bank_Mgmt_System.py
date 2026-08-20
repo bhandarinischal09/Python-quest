@@ -83,3 +83,33 @@ class Bank:
                 print("Amount Withdrawn Successfully !!!")
                 Bank.__update()
 
+    def getdet(self):
+        accn = input("Enter Your Acc Number :")
+        pin = int(input("Enter your Pin :"))
+        userdata = [i for i in Bank.data  if i['AccNo']==accn and i['Pin'] == pin]
+        if not userdata:
+             print("Incorrect Credentials!")
+        else:
+            print('Showing Your Details !! \n')
+            for i in userdata[0]:
+                print(f"{i} : {userdata[0][i]}")
+
+    def updatedet(self):
+        accn = input("Enter Your Acc Number :")
+        pin = int(input("Enter your Pin :"))
+        userdata = [i for i in Bank.data  if i['AccNo']==accn and i['Pin'] == pin]
+        if not userdata:
+             print("Incorrect Credentials!")
+        else:
+             new_pin = int(input("Enter Your New 4 digit PIN"))
+        if len(str(new_pin))!=4:
+            print("Sorry, COULDN'T UPDATE YOUR ACCOUNT !")
+        else:
+            userdata[0]['Name'] = input("Enter your name !")
+            userdata[0]['ContactNo'] = int(input("Enter your Number !"))
+            userdata[0]['Email'] = input("Enter your Email !")
+            userdata[0]['Address'] = input("Enter your Address !")
+            userdata[0]['Pin'] = new_pin
+            print("Account Updated Successfully")
+            Bank.__update()
+
