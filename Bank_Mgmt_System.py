@@ -113,3 +113,15 @@ class Bank:
             print("Account Updated Successfully")
             Bank.__update()
 
+    def deleteacc(self):
+        accn = input("Enter Your Acc Number :")
+        pin = int(input("Enter your Pin :"))
+        userdata = [i for i in Bank.data  if i['AccNo']==accn and i['Pin'] == pin]
+        if not userdata:
+             print("Incorrect Credentials!")
+        else:
+            check = input("Press Y if you want to delete the account ")
+            if check == 'y' or check == 'Y':
+                Bank.data.remove(userdata[0])
+                Bank.__update()
+                print("Account Deleted Successfully !!!")
