@@ -53,3 +53,33 @@ class Bank:
             Bank.data.append(info)
             Bank.__update()
     
+    def deposite(self):
+        accn = input("Enter Your Acc Number :")
+        pin = int(input("Enter your Pin :"))
+        userdata = [i for i in Bank.data if i['AccNo']==accn and i['Pin'] == pin]
+        if not userdata:
+             print("Incorrect Credentials!")
+        else:
+            amount = int(input("Enter the amount you want to deposit \n"))
+            if (amount > 20000 or amount < 0):
+                print("You can't deposite above 20k and less than 0 !")
+            else:
+                userdata[0]['Balance'] += amount
+                Bank.__update()
+                print('Amount Deposited Successfully !')
+    
+    def withdraw(self):
+        accnum = input("Enter your account number :")
+        pin = int(input("Enter your 4 digit PIN : "))
+        userdata = [i for i in Bank.data if i['AccNo'] == accnum and i["Pin"] == pin]
+        if not userdata:
+            print("Incorrect Credentials!")
+        else:
+            amount = int(input("Enter Amount you wanna withdraw :"))
+            if (amount >  userdata[0]['Balance']):
+                print("You can't withdraw amount which you dont have !!!")
+            else:
+                userdata[0]['Balance'] -= amount
+                print("Amount Withdrawn Successfully !!!")
+                Bank.__update()
+
