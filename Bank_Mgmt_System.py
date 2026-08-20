@@ -125,3 +125,35 @@ class Bank:
                 Bank.data.remove(userdata[0])
                 Bank.__update()
                 print("Account Deleted Successfully !!!")
+
+if __name__ == "__main__":
+    user = Bank()
+    while True :
+      print('''      *****MENU*****
+      PRESS
+      1. TO CREATE A BANK ACCOUNT
+      2. TO DEPOSITE MONEY
+      3. TO WITHDRAW MONEY
+      4. TO GET DETAILS
+      5. TO UPDATE DETAILS
+      6. DELETE ACCOUNT
+      7. EXIT
+    ''')
+      choice = int(input("Enter your Choice :-"))
+      if choice == 1:
+        user.createaccount()
+      elif choice == 2:
+        user.deposite()
+      elif choice == 3:
+        user.withdraw()
+      elif choice == 4:
+        user.getdet()
+      elif choice == 5:
+        user.updatedet()
+      elif choice == 6:
+        user.deleteacc()
+      elif choice == 7:
+          print("Thanks for using Bank Management System !!")
+          break
+      else:
+        print("Invalid Choice !! \n")
